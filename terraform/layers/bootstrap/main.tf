@@ -48,6 +48,7 @@ ephemeral "random_password" "init_cloudflare_api_key" {
 }
 
 resource "aws_secretsmanager_secret_version" "cloudflare_api_key" {
-  secret_id        = aws_secretsmanager_secret.cloudflare_api_key.id
-  secret_string_wo = ephemeral.random_password.init_cloudflare_api_key.result
+  secret_id                = aws_secretsmanager_secret.cloudflare_api_key.id
+  secret_string_wo         = ephemeral.random_password.init_cloudflare_api_key.result
+  secret_string_wo_version = 1
 }
