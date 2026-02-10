@@ -38,6 +38,6 @@ resource "aws_ecr_repository" "load_testing" {
 }
 
 resource "aws_secretsmanager_secret" "cloudflare_api_key" {
-  name = "cloudflare_api_key"
+  name        = "cloudflare_api_key"
   description = "Cloudflare API key to be used by external-dns to update the DNS records"
 }
