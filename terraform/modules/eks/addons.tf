@@ -28,6 +28,6 @@ resource "aws_eks_addon" "metrics-server" {
   addon_name    = "metrics-server"
   addon_version = "v0.8.0-eksbuild.6"
   timeouts {
-    create = "5m"
+    create = "10m"
   }
 }

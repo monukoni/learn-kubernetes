@@ -41,3 +41,13 @@ resource "aws_secretsmanager_secret" "cloudflare_api_key" {
   name        = "cloudflare_api_key"
   description = "Cloudflare API key to be used by external-dns to update the DNS records"
 }
+
+ephemeral "random_password" "init_cloudflare_api_key" {
+  length  = 16
+  special = false
+}
+
+resource "aws_secretsmanager_secret_version" "cloudflare_api_key" {
+  secret_id     = aws_secretsmanager_secret.cloudflare_api_key.id
+  secret_string = ephemeral.random_password.init_cloudflare_api_key.result
+}
