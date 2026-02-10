@@ -2,6 +2,8 @@ apiVersion: consul.hashicorp.com/v1alpha1
 kind: IngressGateway
 metadata:
   name: ingress-gateway
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: monukoni.site
   namespace: default
 spec:
   listeners:
