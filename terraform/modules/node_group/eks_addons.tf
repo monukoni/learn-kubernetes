@@ -20,4 +20,5 @@ resource "aws_eks_addon" "metrics-server" {
   timeouts {
     create = "10m"
   }
+  depends_on = [aws_eks_node_group.eks_node_group]
 }
