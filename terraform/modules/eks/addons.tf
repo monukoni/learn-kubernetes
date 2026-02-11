@@ -22,12 +22,3 @@ resource "aws_eks_addon" "kube-proxy" {
   addon_name    = "kube-proxy"
   addon_version = "v1.33.3-eksbuild.4"
 }
-
-resource "aws_eks_addon" "metrics-server" {
-  cluster_name  = aws_eks_cluster.eks.name
-  addon_name    = "metrics-server"
-  addon_version = "v0.8.0-eksbuild.6"
-  timeouts {
-    create = "10m"
-  }
-}
