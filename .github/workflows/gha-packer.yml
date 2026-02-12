@@ -10,6 +10,10 @@ on:
       - "packer/github_runner/**"
       - ".github/workflows/gha-packer.yml"
   workflow_dispatch:
+    inputs:
+      AWS_ACCOUNT_ID:
+        required: true
+        type: string
 
 permissions:
   id-token: write
@@ -30,7 +34,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5.1.1
         with:
-          role-to-assume: arn:aws:iam::296291473256:role/github_actions_oidc
+          role-to-assume: arn:aws:iam::${{ inputs.AWS_ACCOUNT_ID }}:role/github_actions_oidc
           role-session-name: GHA_PACKER_BUILD
           aws-region: eu-central-1
 
