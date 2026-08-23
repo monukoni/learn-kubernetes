@@ -9,7 +9,7 @@ resource "aws_eks_addon" "ebs-csi-driver" {
 resource "aws_eks_addon" "coredns" {
   cluster_name  = var.cluster_name
   addon_name    = "coredns"
-  addon_version = "v1.12.1-eksbuild.2"
+  addon_version = "v1.14.3-eksbuild.3"
   depends_on    = [aws_eks_node_group.eks_node_group]
 }
 
