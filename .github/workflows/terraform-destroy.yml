@@ -12,9 +12,6 @@ on:
             description: 'Layer name which have to be destroyed (e.g. bootstrap, ops, app)'
             type: string
             default: bootstrap
-          AWS_ACCOUNT_ID:
-            required: true
-            type: string
     workflow_dispatch:
       inputs:
         WORKSPACE_NAME:
@@ -31,9 +28,6 @@ on:
             - bootstrap
             - ops
             - app
-        AWS_ACCOUNT_ID:
-          required: true
-          type: string
 
 permissions:
   id-token: write
@@ -55,7 +49,7 @@ jobs:
             - name: configure aws credentials
               uses: aws-actions/configure-aws-credentials@v5.1.1
               with:
-                role-to-assume: arn:aws:iam::${{ inputs.AWS_ACCOUNT_ID }}:role/github_actions_oidc
+                role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/github_actions_oidc
                 role-session-name: GHA_TF_DESTROY
                 aws-region: eu-central-1
             - uses: hashicorp/setup-terraform@v3
