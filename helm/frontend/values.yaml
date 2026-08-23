@@ -5,9 +5,6 @@ replicaCount: 1
 serviceAccount:
   name: "frontend"
 
-podAnnotations: {
-  "consul.hashicorp.com/connect-inject": "true",
-}
 
 podLabels: {
   tier: frontend
