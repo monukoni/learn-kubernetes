@@ -5,6 +5,14 @@ module "gh_oidc" {
   gh_oidc_sub               = var.gh_oidc_sub
 }
 
+module "networking" {
+  source   = "../../modules/network"
+  name     = var.name
+  tags     = var.tags
+  vpc_cidr = var.vpc_cidr
+}
+
+
 resource "aws_ecr_repository" "frontend" {
   name                 = "frontend"
   image_tag_mutability = "MUTABLE"
@@ -27,4 +35,9 @@ resource "aws_ecr_repository" "load_testing" {
   image_scanning_configuration {
     scan_on_push = true
   }
+}
+
+resource "aws_secretsmanager_secret" "cloudflare_api_key" {
+  name        = "cloudflare_api_key"
+  description = "Cloudflare API key to be used by external-dns to update the DNS records"
 }
