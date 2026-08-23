@@ -56,7 +56,7 @@ jobs:
 
       - name: Terraform workspace
         run: |
-          terraform workspace select ${{ inputs.WORKSPACE_NAME }}
+          terraform workspace select ${{ inputs.WORKSPACE_NAME }} -or-create
 
       - name: Terraform plan
         id: tf_plan
