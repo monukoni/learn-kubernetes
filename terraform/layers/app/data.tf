@@ -6,7 +6,6 @@ data "aws_eks_cluster" "eks" {
   name = data.terraform_remote_state.eks.outputs.cluster_name
 }
 
-
 data "terraform_remote_state" "eks" {
   backend = "s3"
   config = {
@@ -16,19 +15,3 @@ data "terraform_remote_state" "eks" {
   }
   workspace = var.name
 }
-
-# data "aws_resourcegroupstaggingapi_resources" "consul_elb_search" {
-#   resource_type_filters = ["elasticloadbalancing:loadbalancer"]
-
-#   tag_filter {
-#     key    = "kubernetes.io/service-name"
-#     values = ["consul/consul-ingress-gateway"]
-#   }
-
-#   depends_on = [helm_release.load-balancer]
-# }
-
-
-# data "aws_elb" "consul_ingress" {
-#   name = local.elb_name
-# }

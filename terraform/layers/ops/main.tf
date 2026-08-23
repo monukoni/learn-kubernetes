@@ -5,12 +5,15 @@ module "iam" {
 }
 
 module "eks" {
-  source         = "../../modules/eks"
-  name           = var.name
-  admin_user_arn = data.aws_iam_user.root.arn
-  eks_role_arn   = module.iam.eks_role_arn
-  subnets        = data.terraform_remote_state.bootstrap.outputs.eks_private_subnets[*].id
-  oidc_role_path = "../../policies/oidc-role.json"
+  source                                  = "../../modules/eks"
+  name                                    = var.name
+  admin_user_arn                          = data.aws_iam_user.root.arn
+  eks_role_arn                            = module.iam.eks_role_arn
+  subnets                                 = data.terraform_remote_state.bootstrap.outputs.eks_private_subnets[*].id
+  oidc_role_path                          = "../../policies/oidc-role.json"
+  external_secrets_access_policy_path     = "../../policies/external_secrets_access_policy.json"
+  external_secrets_pod_identity_role_path = "../../policies/pod_identity_role.json"
+  cloudflare_api_key_secret_arn           = data.terraform_remote_state.bootstrap.outputs.cloudflare_api_key_secret_arn
 }
 
 module "node_group" {

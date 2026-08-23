@@ -20,13 +20,3 @@ resource "helm_release" "app_of_apps" {
   cleanup_on_fail = true
   depends_on      = [helm_release.argocd]
 }
-
-# resource "cloudflare_dns_record" "main_dns_record" {
-#   zone_id = var.zone_id
-#   name    = "@"
-#   ttl     = 300
-#   type    = "CNAME"
-#   comment = "record to aws lb"
-#   content = data.aws_elb.consul_ingress.dns_name
-#   proxied = false
-# }
