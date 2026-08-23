@@ -27,10 +27,8 @@ jobs:
             filters: |
               backend:
                 - 'src/backend/**'
-                - '.github/workflows/push-docker.yml' 
               frontend:
                 - 'src/frontend/**'
-                - '.github/workflows/push-docker.yml' 
 
     backend-push:
         if: ${{ needs.changes.outputs.backend == 'true' }}
